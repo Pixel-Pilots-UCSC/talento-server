@@ -1,0 +1,17 @@
+/node_modules
+/dist
+/logs/*.log
+/common
+/images/*
+/files/*
+/hidden
+
+!/images/.gitkeep
+!/files/.gitkeep
+
+.env
+.env.local
+.env.dev
+.env.stg
+.env.development
+.env.production
