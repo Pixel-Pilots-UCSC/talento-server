@@ -16,7 +16,7 @@ module.exports = {
         // config.client_urls.app
 
         runSeed = false;
-        runSeed = config.seed_status === 'true' ? true : false;
+        runSeed = config.seed_status === 'true';
         console.log('>> runSeed:', runSeed);
         // runSeed = true;
 

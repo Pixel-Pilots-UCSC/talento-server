@@ -154,13 +154,38 @@ module.exports = {
             /* validate request data */
             const validation = validate(schemaValidation.search, body);
             if (validation?.error) return res.status(400).json(validation.error);
-
+            console.log(body.search);
             const jobs = await Job.find({
                 title: { $regex: body.search, $options: 'i' },
                 description: { $regex: body.search, $options: 'i' },
                 requirements: { $regex: body.search, $options: 'i' },
                 responsibilities: { $regex: body.search, $options: 'i' },
                 location: { $regex: body.search, $options: 'i' }
+            }, { applications: false }).populate('employer', 'email image profile.name').limit(body.limit);
+
+            return res.status(200).json({
+                status: 'success',
+                data: jobs
+            });
+
+        } catch (error) {
+            console.log(error);
+            return res.status(500).json({
+                status: 'failed',
+                message: error.message
+            });
+        }
+    },
+    searchByTitle: async (req, res) => {
+        try {
+            let body = req.query;
+
+            /* validate request data */
+            const validation = validate(schemaValidation.search, body);
+            if (validation?.error) return res.status(400).json(validation.error);
+            console.log(body.search);
+            const jobs = await Job.find({
+                title: { $regex: body.search, $options: 'i' }
             }, { applications: false }).populate('employer', 'email image profile.name').limit(body.limit);
 
             return res.status(200).json({

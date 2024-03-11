@@ -11,6 +11,7 @@ const seedUsers = async (num, role, name, result) => {
     return new Promise((resolve) => {
         const users = generateUsers(num, role);
 
+
         if (result?.[name]) return true;
 
         User.insertMany(users, { ordered: false })
@@ -125,6 +126,7 @@ const seedDB = () => {
                 applications
             }),
             function (err) {
+                console.log(err);
                 if (err) throw err;
             }
         );

@@ -10,6 +10,7 @@ router.patch('/update/:id', auth.verifyToken, auth.isEmployer, authenticateToken
 router.get('/all', job.all);
 // router.get('/random/:id', job.random);
 router.get('/search', job.search);
+router.get('/search/title', job.searchByTitle);
 router.get('/filter', job.filter);
 router.get('/:id', job.get);
 router.get('/:id/applications', auth.verifyToken, auth.isEmployer, authenticateToken.authenticateToken, job.applications);

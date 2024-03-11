@@ -83,7 +83,7 @@ module.exports = {
             const user = await User.findOne({ email: body.email });
 
             if (!user) {
-                return res.status(404).json({
+                return res.status(400).json({
                     status: 'failed',
                     message: 'user not found'
                 });
